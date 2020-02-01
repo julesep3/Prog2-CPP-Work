@@ -1,11 +1,3 @@
-/*
-Julian Shen
-Programming II
-Due: 1 / 29 / 2020
-Sorting Program
-Bubble Sort, Shell Sort, Quick Sort, and a Main Program
-*/
-
 #include <iostream>
 #include "bubbleSort.cpp"
 #include "shellSort.cpp"

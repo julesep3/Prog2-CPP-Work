@@ -1,0 +1,67 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int partition(int ar[], int l, int r) {
+    while (l < r) 
+    {
+        while ((l < r) && (ar[l] <= ar[r])) r--;
+        swap(ar[l], ar[r]);
+        while ((l < r) && (ar[l] <= ar[r])) l++;
+        swap(ar[l], ar[r]);
+    }
+    return l;
+}
+int top = -1;
+int stak[20];
+void push(int i) {
+    top++;
+    stak[top] = i;
+}
+void pop(int& i) {
+    i = stak[top--];
+}
+int empty() {
+    return top == -1;
+}
+void Quick(int ar[], int n) {
+    int l, r;
+
+    for(int i=0; i < n; i++)
+        ar[i] = rand() % 200;
+
+    push(0);
+    push(n-1);
+
+    while (!empty()) {
+        pop(r);
+        pop(l);
+        int pos = partition(ar, l, r);
+        if (pos - l > 1) {
+            push(l);
+            push(pos - l);
+        }
+        if ((r - pos) > l) {
+            push(pos + 1);
+            push(r);
+        }
+
+    }
+}
+#if INCLUDE_LEVEL < 1
+int main() {
+    int i;
+    int ar[20];
+    int n = 20;
+    for (i = 0; i < n; i++) {
+        ar[i] = rand() % 100;
+        cout << ar[i] << " ";
+    }
+    cout << endl;
+    Quick(ar, n);
+    for (i = 0; i < n; i++) {
+        cout << ar[i] << " ";
+    }
+    cout << endl;
+}
+#endif
