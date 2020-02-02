@@ -15,15 +15,6 @@ int main()
 {
 	string line;
 	ifstream myfile("input.txt");
-	/*
-	if (myfile.is_open()) {
-		while(getline(myfile, line)) {
-			cout << line << '\n';
-		}
-		myfile.close();
-	}
-	else cout << "Nope, ain't gonna do it";
-	*/
 	int i;
 	int j = 0;
 	int n = 10;
@@ -37,34 +28,40 @@ int main()
 	}
 	int cutoff = j;
 	j = 0;
+
 	for (i = 0; i < n; i++)
 	{
 		int k = 0;
+		Movies[i].count = 0;
 		Movies[i].Name = inputAr[j];
 		j++;
-		cout << Movies[i].Name << endl
-			 << "i : " << i << " || k : " << k << " || j : " << j << endl;
-
 		Movies[i].Date = inputAr[j];
 		j++;
-		cout << Movies[i].Date << endl
-			 << "i : " << i << " || k : " << k << " || j : " << j << endl;
-		cout << i << endl;
-		cout << inputAr[j] << endl;
-		while (inputAr[j] != "")
-		{
-			cout << i << endl;
 
+		if (inputAr[j] == "")
+		{
+			j++;
+			break;
+		}
+
+		while ((inputAr[j] != "") && (j < 70))
+		{
 			Movies[i].Actors[k] = inputAr[j];
 			k++;
 			j++;
-			cout << Movies[i].Actors[k] << endl
-				 << "i : " << i << " || k : " << k << " || j : " << j << endl;
+			Movies[i].count++;
 		}
 		j++;
-		cout << "J is " << j << endl;
 	}
-	cout << Movies[0].Name << endl;
-
+	
+	for(i = 0; i < 10; i++) {
+		int e = Movies[i].count;
+		cout << "Movie Title : " << Movies[i].Name << endl;
+		cout << "Date Released : " << Movies[i].Date << endl;
+		for (j = 0; j < e; j++) {
+			cout << "Actor " << j+1 << " : " << Movies[i].Actors[j] << endl;
+		}
+		cout << endl;
+	}
 	myfile.close();
 }
