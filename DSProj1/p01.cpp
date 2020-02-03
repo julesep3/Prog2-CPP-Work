@@ -5,11 +5,17 @@ int problem1();
 int problem2();
 int problem3();
 int problem4();
+int biDir(int, int);
+int disj(int, int);
+int nDisjN(int, int);
+int ifThen(int, int);
+int conj(int, int);
+int nConj(int, int);
 
 
 
-int main() {
-
+int main() 
+{
 	/*
 	int a1 = problem1(p, q);
 	int a2 = problem2(p, q);
@@ -40,8 +46,8 @@ int main() {
 	r = 0;
 	int f4 = problem4(p, q, r);
 	*/
-
-	return 0;
+	int a = ifThen(1, 0);
+	cout << a << endl;
 }
 
 int problem1() {
@@ -74,4 +80,32 @@ int problem4() {
 	int equality;
 
 	return 1;
+}
+// subroutines
+int biDir(int p, int q){
+	if(p == q) return 1;
+	else return 0;
+}
+int disj(int p, int q) {
+	if(p || q) return 1;
+	else return 0;
+}
+int nDisjN(int p, int q) {
+	if(p == 0) p = 1;
+	else if(p == 1) p = 0;
+	if(q == 0) q = 1;
+	else if(q == 1) q = 0;
+	return disj(p, q);
+}
+int ifThen(int p, int q) {
+	if(p && !q) return 0;
+	else return 1;
+}
+int conj(int p, int q) {
+	if(p && q) return 1;
+	else return 0;
+}
+int nConj(int p, int q) {
+	if(p && q) return 0;
+	else return 1;
 }
