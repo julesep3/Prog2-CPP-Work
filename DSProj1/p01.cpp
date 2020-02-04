@@ -1,10 +1,14 @@
 #include <iostream>
 using namespace std;
 
-int problem1();
-int problem2();
-int problem3();
-int problem4();
+void problem1();
+void problem2();
+void problem3();
+void problem4();
+void process1(int, int);
+void process2(int, int);
+void process3(int, int);
+void process4(int, int, int);
 int biDir(int, int);
 int disj(int, int);
 int nDisjN(int, int);
@@ -16,70 +20,121 @@ int nConj(int, int);
 
 int main() 
 {
-	/*
-	int a1 = problem1(p, q);
-	int a2 = problem2(p, q);
-	int a3 = problem3(p, q);
-	int a4 = problem4(p, q, r);
-	r = 0;
-	int b4 = problem4(p, q, r);
-	r = 1;
+	problem1();
+	problem2();
+	problem3();
+	problem4();
+}
+
+void problem1() {
+	int p = 1;
+	int q = 1;
+
+	cout << endl << "Check equivalence: p <-> q === ((p + q) * (~p + ~q))" << endl;
+	cout << "  p | q | p + q | ~p + ~q | p <-> q | <-> | (p + q) * (~p + ~q)" << endl;
+	process1(p, q);
 	q = 0;
-	int b1 = problem1(p, q);
-	int b2 = problem2(p, q);
-	int b3 = problem3(p, q);
-	int c4 = problem4(p, q, r);
-	r = 0;
-	int d4 = problem4(p, q, r);
+	process1(p, q);
 	p = 0;
-	int d1 = problem1(p, q);
-	int d2 = problem2(p, q);
-	int d3 = problem3(p, q);
-	int h4 = problem4(p, q, r);
-	r = 1;
-	int g4 = problem4(p, q, r);
 	q = 1;
-	int c1 = problem1(p, q);
-	int c2 = problem2(p, q);
-	int c3 = problem3(p, q);
-	int e4 = problem4(p, q, r);
-	r = 0;
-	int f4 = problem4(p, q, r);
-	*/
-	int a = ifThen(1, 0);
-	cout << a << endl;
+	process1(p, q);
+	p = 0;
+	q = 0;
+	process1(p, q);
 }
-
-int problem1() {
+void process1(int p, int q) {
+	int a, b, c, d, equality;
+	a = disj(p, q);
+	b = nDisjN(p, q);
+	c = biDir(p, q);
+	d = conj(a, b);
+	equality = biDir(c, d);
+	cout << "  " << p << "   " << q << "     " << a << "        " << b << "         " << c;
+	cout << "       " << equality << "            " << d << endl;
+}
+void problem2() {
 	int p = 1;
 	int q = 1;
-	int equality;
 
-
-
-	return 1;
+	cout << endl << "Check equivalence: ~(p * q) === ~p + ~q" << endl;
+	cout << "  p | q | ~(p * q) | <-> | ~p + ~q" << endl;
+	process2(p, q);
+	q = 0;
+	process2(p, q);
+	p = 0;
+	q = 1;
+	process2(p, q);
+	q = 0;
+	process2(p, q);
 }
-int problem2() {
+void process2(int p, int q) {
+	int a, b, equality;
+	a = nConj(p, q);
+	b = nDisjN(p, q);
+	equality = biDir(a, b);
+	cout << "  " << p << "   " << q << "       " << a << "       " << equality << "       " << b << endl;
+}
+void problem3() {
 	int p = 1;
 	int q = 1;
-	int equality;
 
-	return 1;
+	cout << endl << "Check equivalence: p <-> q === ((p -> q) * (q -> p))" << endl;
+	cout << "  p | q | p -> q | q -> p | p <-> q | <-> | (p -> q) * (q -> p)" << endl;
+	process3(p, q);
+	q = 0;
+	process3(p, q);
+	p = 0;
+	q = 1;
+	process3(p, q);
+	q = 0;
+	process3(p, q);
 }
-int problem3() {
-	int p = 1;
-	int q = 1;
-	int equality;
-
-	return 1;
+void process3(int p, int q) {
+	int a, b, c, d, equality;
+	a = ifThen(p, q);
+	b = ifThen(q, p);
+	c = biDir(p, q);
+	d = conj(a, b);
+	equality = biDir(c, d);
+	cout << "  " << p << "   " << q << "      " << a << "        " << b << "        " << c;
+	cout << "       " << equality << "             " << d << endl;
 }
-int problem4() {
+void problem4() {
 	int p = 1;
 	int q = 1;
 	int r = 1;
-	int equality;
-
-	return 1;
+	cout << endl << "Check equivalence: (p -> q) -> r === p -> (q -> r)" << endl;
+	cout << "  p | q | r | p -> q | q -> r | (p -> q) -> r | <-> | p -> (q -> r)" << endl;
+	process4(p, q, r);
+	r = 0;
+	process4(p, q, r);
+	r = 1;
+	q = 0;
+	process4(p, q, r);
+	r = 0;
+	process4(p, q, r);
+	p = 0;
+	q = 1;
+	r = 1;
+	process4(p, q, r);
+	r = 0;
+	process4(p, q, r);
+	p = 0;
+	q = 0;
+	r = 1;
+	process4(p, q, r);
+	r = 0;
+	process4(p, q, r);
+}
+void process4(int p, int q, int r) {
+	int a, b, c, d, equality;
+	a = ifThen(p, q);
+	b = ifThen(q, r);
+	c = ifThen(a, r);
+	d = ifThen(p, b);
+	equality = biDir(c, d);
+	cout << "  " << p << "   " << q << "   " << r << "     " << a << "        " << b << "             " << c;
+	cout << "         " << equality << "         " << d << endl;
 }
 // subroutines
 int biDir(int p, int q){
