@@ -7,7 +7,7 @@ struct movie
 {
 	string Name;
 	string Date;
-	string Actors[9];
+	string Actors[10];
 	int count;
 };
 
@@ -27,6 +27,7 @@ void assignInputTo()
 		inputAr[j] = line;
 		j++;
 	}
+	myfile.close();
 	int cutoff = j;
 	j = 0;
 	// assigning info to movie struct
@@ -52,22 +53,66 @@ void assignInputTo()
 		}
 		j++;
 	}
-	myfile.close();
 }
 
-void printMovies() {
-	// print all movies
+void printMovies()
+{
 	int i, j;
 	for (i = 0; i < 10; i++)
 	{
 		int e = Movies[i].count;
-		cout << "Movie " << i + 1 << " Title : " << Movies[i].Name << endl;
+		cout << endl << "Movie " << i + 1 << " Title : " << Movies[i].Name << endl;
 		cout << "Date Released : " << Movies[i].Date << endl;
 		for (j = 0; j < e; j++)
 		{
-			cout << "Actor " << j + 1 << " : " << Movies[i].Actors[j] << endl;
+			cout << "      Actor " << j + 1 << " : " << Movies[i].Actors[j] << endl;
 		}
-		cout << endl;
+	}
+}
+
+void titleSwap()
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		int x = 1;
+		while (x)
+		{
+			for (j = 0; j < n - 1; j++)
+			{
+				if (Movies[j].Name > Movies[j + 1].Name)
+				{
+					swap(Movies[j], Movies[j + 1]);
+				}
+			}
+			x = 0;
+		}
+	}
+}
+
+string getLastName(string s)
+{
+	int w = s.size() - 1;
+	while (s.substr(w - 1, 1) != " ")
+		w--;
+	return s.substr(w);
+}
+
+void nameSwap()
+{
+	int i, j, m;
+	for (i = 0; i < n; i++)
+	{
+		for (m = 0; m < Movies[i].count - 1; m++)
+		{
+			for (j = 0; j < Movies[i].count - 1; j++)
+			{
+				if (getLastName(Movies[i].Actors[j]) > getLastName(Movies[i].Actors[j + 1]))
+				{
+					swap(Movies[i].Actors[j], Movies[i].Actors[j + 1]);
+				}
+			}
+		}
 	}
 }
 
@@ -75,6 +120,8 @@ void printMovies() {
 int main()
 {
 	assignInputTo();
+	titleSwap();
+	nameSwap();
 	printMovies();
 }
 #endif
