@@ -189,7 +189,7 @@ void process4(int p, int q, int r)
 	cout << "  " << p << "   " << q << "   " << r << "     " << a << "        " << b << "             " << c;
 	cout << "         " << equality << "         " << d << endl;
 }
-// subroutines
+// p <-> q
 int biDir(int p, int q)
 {
 	if (p == q)
@@ -197,6 +197,7 @@ int biDir(int p, int q)
 	else
 		return 0;
 }
+// p + q
 int disj(int p, int q)
 {
 	if (p || q)
@@ -204,6 +205,7 @@ int disj(int p, int q)
 	else
 		return 0;
 }
+// ~p + ~q
 int nDisjN(int p, int q)
 {
 	if (p == 0)
@@ -216,6 +218,7 @@ int nDisjN(int p, int q)
 		q = 0;
 	return disj(p, q);
 }
+// p -> q
 int ifThen(int p, int q)
 {
 	if (p && !q)
@@ -223,6 +226,7 @@ int ifThen(int p, int q)
 	else
 		return 1;
 }
+// p * q
 int conj(int p, int q)
 {
 	if (p && q)
@@ -230,6 +234,7 @@ int conj(int p, int q)
 	else
 		return 0;
 }
+// ~(p * q)
 int nConj(int p, int q)
 {
 	if (p && q)

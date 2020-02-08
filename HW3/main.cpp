@@ -1,3 +1,11 @@
+/*
+Julian Shen
+Programming II
+Due: 02 / 07 / 2020
+Warner Brothers Movies
+Assign info to movie struct, sort by movie title, sort by actor's last name, print final movie info
+*/
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -8,7 +16,6 @@ void printMovies();
 string getLastName(string);
 void titleSwap();
 void nameSwap();
-
 
 struct movie
 {
@@ -35,7 +42,7 @@ int main()
 
 void assignInputTo()
 {
-	// copying input file into an array, line by line
+	// copying input file into inputAr[], line by line
 	ifstream myfile("input.txt");
 	while (getline(myfile, line))
 	{
@@ -45,7 +52,7 @@ void assignInputTo()
 	myfile.close();
 	int cutoff = j;
 	j = 0;
-	// assigning info to movie struct
+	// assigning inputAr[] info to movie struct
 	for (i = 0; i < n; i++)
 	{
 		int k = 0;
@@ -54,19 +61,19 @@ void assignInputTo()
 		j++;
 		Movies[i].Date = inputAr[j];
 		j++;
-		if (inputAr[j] == "")
-		{
-			j++;
-			break;
-		}
-		while ((inputAr[j] != "") && (j < cutoff))
+		int pl = j;
+		while (j < cutoff)
 		{
 			Movies[i].Actors[k] = inputAr[j];
 			k++;
 			j++;
 			Movies[i].count++;
+			if (inputAr[j].size() == 1)
+			{
+				j = cutoff;
+			}
 		}
-		j++;
+		j = pl + Movies[i].count +1;
 	}
 }
 
@@ -76,7 +83,8 @@ void printMovies()
 	for (i = 0; i < 10; i++)
 	{
 		int e = Movies[i].count;
-		cout << endl << "Movie " << i + 1 << " Title : " << Movies[i].Name << endl;
+		cout << endl
+			 << "Movie " << i + 1 << " Title : " << Movies[i].Name << endl;
 		cout << "Date Released : " << Movies[i].Date << endl;
 		for (j = 0; j < e; j++)
 		{
@@ -118,7 +126,7 @@ void nameSwap()
 	int i, j, m;
 	for (i = 0; i < n; i++)
 	{
-		for (m = 0; m < Movies[i].count - 1; m++)
+		for (m = 0; m < Movies[i].count; m++)
 		{
 			for (j = 0; j < Movies[i].count - 1; j++)
 			{
