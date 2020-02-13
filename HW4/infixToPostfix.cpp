@@ -4,13 +4,13 @@
 using namespace std;
 
 int main() {
-	string aline;
+	string s;
 	ifstream inData;
 
-	inData.open("infix.data");
+	inData.open("input.txt");
 
-	while (getline(inData, aline)) {
-		cout << aline << endl;
+	while (getline(inData, s)) {
+		cout << s << endl;
 	}
 
 	inData.close();
