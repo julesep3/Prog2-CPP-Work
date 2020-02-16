@@ -1,8 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "stack.h"
+#include <cassert>
 using namespace std;
-
+/*
 struct stack {
 	int stk[50];
 	int top = -1;
@@ -15,11 +17,11 @@ struct stack {
 	int empty() {
 		return top == -1;
 	}
-};
+};*/
 
 int main() {
-	stack<int> intstack;
-	stack<char> charstack;
+	//stack<int> intstack;
+	//stack<char> charstack;
 	string s;
 	ifstream inData;
 
