@@ -1,23 +1,23 @@
-
 #include <iostream>
 #include <cassert>
 using namespace std;
-#include "stack.h"
+#include "istack.h"
 
-stack::node::node(int d)
+template <class T>
+istack<T>::node::node(T d)
  : data(d), link(nullptr) {
 }
-
-stack::stack() : ptop(nullptr) {
+template <class T>
+istack<T>::istack() : ptop(nullptr) {
 }
-
-stack::~stack() {
+template <class T>
+istack<T>::~istack() {
 	while (!empty()) {
 		pop();
 	}
 }
-
-void stack::push(int data) {
+template <class T>
+void istack<T>::push(T data) {
 	node* new_node = new node(data);
 
 	if(ptop == nullptr) {
@@ -27,8 +27,8 @@ void stack::push(int data) {
 		ptop = new_node;
 	}
 }
-
-void stack::pop() {
+template <class T>
+void istack<T>::pop() {
 	assert(!empty());
 	// one node data only
 	if (ptop->link == nullptr) {
@@ -41,16 +41,16 @@ void stack::pop() {
 		delete discard;
 	}
 }
-
-bool stack::empty() const {
+template <class T>
+bool istack<T>::empty() const {
 	return ptop == nullptr;
 }
-
-bool stack::full() const {
+template <class T>
+bool istack<T>::full() const {
 	return false;
 }
-
-int stack::top() const {
+template <class T>
+int istack<T>::top() const {
 	assert(!empty());
 	return ptop->data;
 }

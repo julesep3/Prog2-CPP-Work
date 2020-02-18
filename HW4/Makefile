@@ -1,8 +1,8 @@
-a.out: infixToPostfix.o stack.o
-	g++ -g infixToPostfix.o stack.o
+a.out: infixToPostfix.o istack.o
+	g++ -g infixToPostfix.o istack.o
 
-nstack.o: stack.cpp stack.h
-	g++ -c -g stack.cpp
+istack.o: istack.cpp istack.h
+	g++ -c -g istack.cpp
 
-infixToPostfix.o: infixToPostfix.cpp stack.h
+infixToPostfix.o: infixToPostfix.cpp istack.h
 	g++ -c -g infixToPostfix.cpp

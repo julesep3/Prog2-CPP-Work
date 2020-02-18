@@ -1,18 +1,19 @@
 #pragma once
 
-class stack {
+template <class T>
+class istack {
 private:
 	class node {		
 	public:
-		int data;
+		T data;
 		node* link;
-		node(int); // data
+		node(T); // data
 	};
 	node* ptop;
 public:
-	stack();
-	~stack();
-	void push(int);
+	istack();
+	~istack();
+	void push(T);
 	void pop();
 	int top() const;
 	bool empty() const;
