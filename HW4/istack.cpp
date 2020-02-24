@@ -45,18 +45,7 @@ bool istack::empty() const {
 	return ptop == nullptr;
 }
 
-bool istack::full() const {
-	return false;
-}
-
 char istack::top() const {
 	assert(!empty());
 	return ptop->data;
-}
-
-void istack::display() {
-	while(!empty()) {
-		cout << istack::top() << "|";
-		istack::pop();
-	}
 }

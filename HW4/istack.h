@@ -16,6 +16,4 @@ public:
 	void pop();
 	char top() const;
 	bool empty() const;
-	bool full() const;
-	void display();
 };

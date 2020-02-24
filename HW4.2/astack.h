@@ -1,11 +1,12 @@
 #pragma once
 
-class stack {
+class astack {
 private:
 	char stk[50];
 	int top = -1;
 public:
 	void push(char);
-	void pop(char &);
+	void pop();
 	int empty();
-}
+	char onTop();
+};

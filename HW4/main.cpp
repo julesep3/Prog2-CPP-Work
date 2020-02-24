@@ -15,21 +15,23 @@ using namespace std;
 
 int main()
 {
-	istack output;
 	istack cstack;
 	fstream inData;
 	inData.open("input.txt");
 	string s;
+	int num = 1;
 	while (getline(inData, s))
 	{
-		cout << s << endl;
+		if (s.length() > 1) {
+			cout << num << ":   "<< s << endl << "     ";
+		}
+
 		for (int i = 0; i < s.length(); i++)
 		{
 			if (s[i] != ' ')
 			{
 				if (isdigit(s[i]))
 				{
-					//output.push(s[i]);
 					cout << s[i];
 				}
 				else if (s[i] == '(')
@@ -40,9 +42,7 @@ int main()
 				{
 					while (cstack.top() != '(')
 					{
-						char x = cstack.top();
-						//output.push(x);
-						cout << x;
+						cout << cstack.top();
 						cstack.pop();
 					}
 					cstack.pop();
@@ -55,9 +55,7 @@ int main()
 				{
 					while (!cstack.empty() && (priority(s[i]) <= priority(cstack.top())))
 					{
-						char y = cstack.top();
-						//output.push(y);
-						cout << y;
+						cout << cstack.top();
 						cstack.pop();
 					}
 					cstack.push(s[i]);
@@ -66,13 +64,13 @@ int main()
 		}
 		while (!cstack.empty())
 		{
-			char z = cstack.top();
-			//output.push(z);
-			cout << z;
+			cout << cstack.top();;
 			cstack.pop();
 		}
+		if (s.length() > 1) {
+			num++;
+		}
+		cout << endl;
 	}
-	//output.display();
-
 	inData.close();
 }

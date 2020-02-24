@@ -1,11 +1,11 @@
-a.out: stack.o main.o priority.o
-	g++ -g stack.o priority.o main.o
+a.out: astack.o priority.o main.o
+	g++ -g astack.o priority.o main.o
 
-stack.o: stack.cpp stack.h
-	g++ -c -g stack.cpp
+astack.o: astack.cpp astack.h
+	g++ -c -g astack.cpp
 
 priority.o: priority.cpp priority.h
 	g++ -c -g priority.cpp
 
-main.o: main.cpp stack.h priority.h
+main.o: main.cpp astack.h priority.h
 	g++ -c -g main.cpp

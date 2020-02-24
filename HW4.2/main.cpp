@@ -9,14 +9,15 @@ Convert file input from infix to postfix expression
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "stack.h"
+#include "astack.h"
 #include "priority.h"
 using namespace std;
 
 int main()
 {
-	stack output;
-	stack cstack;
+	astack output;
+	astack cstack;
+	fstream inData;
 	inData.open("input.txt");
 	string s;
 	while (getline(inData, s))
@@ -37,9 +38,9 @@ int main()
 				}
 				else if (s[i] == ')')
 				{
-					while (cstack.top() != '(')
+					while (cstack.onTop() != '(')
 					{
-						char x = cstack.top();
+						char x = cstack.onTop();
 						//output.push(x);
 						cout << x;
 						cstack.pop();
@@ -52,9 +53,9 @@ int main()
 				}
 				else
 				{
-					while (!cstack.empty() && (priority(s[i]) <= priority(cstack.top())))
+					while (!cstack.empty() && (priority(s[i]) <= priority(cstack.onTop())))
 					{
-						char y = cstack.top();
+						char y = cstack.onTop();
 						//output.push(y);
 						cout << y;
 						cstack.pop();
@@ -65,7 +66,7 @@ int main()
 		}
 		while (!cstack.empty())
 		{
-			char z = cstack.top();
+			char z = cstack.onTop();
 			//output.push(z);
 			cout << z;
 			cstack.pop();
