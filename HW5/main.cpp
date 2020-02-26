@@ -34,7 +34,7 @@ int main()
 			{
 				if (isdigit(s[i]))
 				{
-					cout << s[i];
+					output.push(s[i]);
 				}
 				else if (s[i] == '(')
 				{
@@ -44,7 +44,7 @@ int main()
 				{
 					while (cstack.onTop() != '(')
 					{
-						cout << cstack.onTop();
+						output.push(cstack.onTop());
 						cstack.pop();
 					}
 					cstack.pop();
@@ -57,7 +57,7 @@ int main()
 				{
 					while (!cstack.empty() && (priority(s[i]) <= priority(cstack.onTop())))
 					{
-						cout << cstack.onTop();
+						output.push(cstack.onTop());
 						cstack.pop();
 					}
 					cstack.push(s[i]);
@@ -66,13 +66,14 @@ int main()
 		}
 		while (!cstack.empty())
 		{
-			cout << cstack.onTop();;
+			output.push(cstack.onTop());
 			cstack.pop();
 		}
+		output.display();
+		output.popAll();
 		if (s.length() > 1) {
 			inputNum++;
 		}
-		cout << endl;
 	}
 	inData.close();
 }

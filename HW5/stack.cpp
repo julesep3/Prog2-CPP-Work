@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;
+
 template<typename T>
 struct stack {
 	T stk[50];
@@ -13,5 +16,14 @@ struct stack {
 	}
 	T onTop() {
 		return stk[top];
+	}
+	void display() {
+		for(int j = 0; j <= top; j++) {
+			cout << stk[j];
+		}
+		cout << endl;
+	}
+	void popAll() {
+		top = -1;
 	}
 };
