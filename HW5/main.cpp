@@ -1,9 +1,10 @@
 /*
 Julian Shen
 Programming II
-Due: 02 / 21 / 2020
-Infix to Postfix
-Convert file input from infix to postfix expression
+Due: 02 / 28 / 2020
+HW5 - Infix to Postfix with evaluation
+ - Convert file input from infix to postfix expression, 
+    then evaluate and print solution
 */
 
 #include <iostream>
@@ -16,14 +17,15 @@ using namespace std;
 int main()
 {
 	stack<char> cstack;
+	stack<char> output;
 	fstream inData;
 	inData.open("input.txt");
 	string s;
-	int num = 1;
+	int inputNum = 1;
 	while (getline(inData, s))
 	{
 		if (s.length() > 1) {
-			cout << num << ":   "<< s << endl << "     ";
+			cout << inputNum << ":   "<< s << endl << "     ";
 		}
 
 		for (int i = 0; i < s.length(); i++)
@@ -68,7 +70,7 @@ int main()
 			cstack.pop();
 		}
 		if (s.length() > 1) {
-			num++;
+			inputNum++;
 		}
 		cout << endl;
 	}
