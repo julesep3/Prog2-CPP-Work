@@ -3,7 +3,7 @@
 class astack {
 private:
 	char stk[50];
-	int top = -1;
+	int top;
 public:
 	void push(char);
 	void pop();
