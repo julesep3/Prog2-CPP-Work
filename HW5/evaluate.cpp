@@ -31,11 +31,16 @@ int evaluate(int opn1, char token, int opn2)
 	int result = 0;
 	switch (token)
 	{
-		case '+' : result = opn1 + opn2;
-		case '-' : result = opn1 - opn2;
-		case '*' : result = opn1 * opn2;
-		case '/' : result = opn1 / opn2;
-		case '^' : result = pow(opn1, opn2);
+	case '+':
+		return result = opn1 + opn2;
+	case '-':
+		return result = opn1 - opn2;
+	case '*':
+		return result = opn1 * opn2;
+	case '/':
+		return result = opn1 / opn2;
+	case '^':
+		return result = pow(opn1, opn2);
 	}
 	return result;
 }

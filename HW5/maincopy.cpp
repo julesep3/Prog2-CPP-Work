@@ -84,6 +84,7 @@ int main()
 			{
 				int p = token - '0';
 				estack.push(p);
+				//cout << "E Stack : " << estack.onTop() << endl;
 			}
 			else
 			{
@@ -91,11 +92,11 @@ int main()
 				estack.pop();
 				int opn1 = estack.onTop();
 				estack.pop();
+				cout << endl << "OPN1 : " << opn1 << ". OPN2 : " << opn2 << ". TOKEN : " << token << endl;;
 				result = evaluate(opn1, token, opn2);
-				if(output.top == t) {
-					cout << "     " << result << endl;
-				}
+				cout << result;
 				estack.push(result);
+				
 			}
 			output.top++;
 		}
