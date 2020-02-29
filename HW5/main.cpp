@@ -76,6 +76,7 @@ int main()
 		// end of converting infix to postfix
 		int result;
 		int t = output.top;
+		//cout << "t is " << t << "." << endl;
 		output.top = 0;
 		for (int r = 0; r <= t; r++)
 		{
@@ -96,10 +97,10 @@ int main()
 				result = evaluate(opn1, token, opn2);
 				//cout << "RESULT = " << result << endl;
 				if(output.top == t) {
-					cout << "     " << result << endl;
+					cout << "     " << result;
 				}
 				estack.push(result);
-				//cout << "top is " << estack.top << endl;
+				//cout << "Int-top is " << estack.top << endl;
 				
 			}
 			output.top++;
@@ -108,6 +109,7 @@ int main()
 		if (s.length() > 1)
 		{
 			inputNum++;
+			cout << endl;
 		}
 	}
 	inData.close();
