@@ -1,8 +1,11 @@
-a.out: istack.o main.o
-	g++ -g istack.o main.o
+a.out: node.o sllist.o main.o
+	g++ -g node.o sllist.o main.o
 
-istack.o: istack.cpp istack.h
-	g++ -c -g istack.cpp
+node.o: node.cpp node.h
+	g++ -c -g node.cpp
 
-main.o: main.cpp istack.h
+sllist.o: sllist.cpp sllist.h node.h
+	g++ -c -g sllist.cpp
+
+main.o: main.cpp sllist.h
 	g++ -c -g main.cpp
