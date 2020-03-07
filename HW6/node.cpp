@@ -1,6 +1,7 @@
 #include "node.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
-node::node(int d) : data(d), link(nullptr)
+node::node(string d, int r) : data(d), rank(r), link(nullptr)
 {}

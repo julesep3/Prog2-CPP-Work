@@ -9,10 +9,10 @@ private:
 public:
 	sllist();
 	~sllist();
-	void append(int);
+	void append(string, int);
 	int size() const;
-	int get(int) const;
-	void insert(int, int); // pos, data
+	string get(int) const;
+	void insert(int, string, int); // pos, data
 	void remove(int); // pos
-	int index_of(int) const; // 1st occurence of data
+	int index_of(string) const; // 1st occurence of data
 };

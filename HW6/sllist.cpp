@@ -15,8 +15,8 @@ int sllist::size() const {
 	return count;
 }
 
-void sllist::append(int data) {
-	node* p = new node(data);
+void sllist::append(string data, int rank) {
+	node* p = new node(data, rank);
 	if (count == 0) {
 		//empty list
 		head = tail = p;
@@ -27,7 +27,7 @@ void sllist::append(int data) {
 	++count;
 }
 
-int sllist::get(int pos) const {
+string sllist::get(int pos) const {
 	assert(0 <= pos && pos < count);
 	node* n = head;
 	for (int i = 0; i < pos; i++) {
@@ -36,18 +36,18 @@ int sllist::get(int pos) const {
 	return n->data;
 }
 
-void sllist::insert(int pos, int data) {
+void sllist::insert(int pos, string data, int rank) {
 	assert(0 <= pos && pos <= count);
 	if (pos == count || count == 0) {
-		append(data);
+		append(data, rank);
 	} else if (pos == 0) {
 		// push of stack
-		node* p = new node(data);
+		node* p = new node(data, rank);
 		p->link = head;
 		head = p;
 		++count;
 	} else { // insert between two nodes
-		node* p = new node(data);
+		node* p = new node(data, rank);
 		node* left = head;
 		for (int i = 0; i < pos-1; i++) {
 			left = left->link;
@@ -94,7 +94,7 @@ void sllist::remove(int pos) {
 	--count;
 }
 
-int sllist::index_of(int data) const {
+int sllist::index_of(string data) const {
 	assert(count > 0);
 	node* n = head;
 	int pos = 0;

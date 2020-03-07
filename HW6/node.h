@@ -1,11 +1,14 @@
 #pragma once
+#include <iostream>
+using namespace std;
 
 class node {
 private:
-	int data;
+	string data;
+	int rank;
 	node* link;
 public:
-	node(int);
+	node(string, int);
 
 	friend class sllist;
 };

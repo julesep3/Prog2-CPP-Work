@@ -14,34 +14,47 @@ using namespace std;
 
 int main()
 {
-	sllist cstack;
+	sllist list;
 	fstream inData;
 	inData.open("input.txt");
-	string s, tempPosition;
-	int positionSet = 0;
+	string s, tempPosition, tempData;
+	int pos = 0;
 	while (getline(inData, s))
 	{
-		for (int i = 0; i < s.length(); i++) {
+		for (int i = 0; i < s.length(); i++)
+		{
 			cout << s[i] << "|";
 		}
 		cout << endl;
-		tempPosition = "";
-		for (int i = 0; i < s.length(); i++) {
-			if (s[i] != ' ') {
-				//if (isdigit(s[i-1])) break;
-				if (isdigit(s[i]))
-				{
-					tempPosition += s[i];
-				}
-				if (!isdigit(s[i])) 
-				{
-					cout << "NOT DIGIT";
-					cout << " || i = " << i << endl;
+
+		tempPosition = ""; // reset tempPosition before reading each line
+		tempData = "";	 // reset tempData before reading each line
+		for (int i = 0; i < s.length(); i++)
+		{
+			if (s[i] == ' ' && tempPosition == "")
+			{
+				continue;
+			}
+			else if (isdigit(s[i]))
+			{
+				tempPosition += s[i];
+			}
+			else if (!isdigit(s[i]) || s[i] == ' ')
+			{
+				if (i == s.length() - 1)
 					break;
+				if (s[i] == '+')
+					continue;
+				if (s[i] == '=')
+				{
+					tempData += '\n';
+					continue;
 				}
+				tempData += s[i];
 			}
 		}
-		cout << tempPosition << endl;
+		pos = stoi(tempPosition);
+		//list.insert(pos, tempData);
 	}
 	inData.close();
 }
