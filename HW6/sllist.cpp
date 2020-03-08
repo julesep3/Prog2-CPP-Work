@@ -36,6 +36,15 @@ string sllist::get(int pos) const {
 	return n->data;
 }
 
+int sllist::getRank(int pos) {
+	assert(0 <= pos && pos < count);
+	node* e = head;
+	for (int j = 0; j < pos; j++) {
+		e = e->link;
+	}
+	return e->rank;
+}
+
 void sllist::insert(int pos, string data, int rank) {
 	assert(0 <= pos && pos <= count);
 	if (pos == count || count == 0) {
